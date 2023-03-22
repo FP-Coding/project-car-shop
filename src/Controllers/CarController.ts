@@ -19,6 +19,25 @@ class CarController implements ICarController {
       next(error);
     }
   }
+
+  async getById(req: Request, res: Response, next: NextFunction): Promise<Response | undefined> {
+    try {
+      const { id } = req.params; 
+      const foundedCar = await this._service.getById(id);
+      return res.status(200).json(foundedCar);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async getAll(_req: Request, res: Response, next: NextFunction): Promise<Response | undefined> {
+    try {
+      const cars = await this._service.getAll();
+      return res.status(200).json(cars);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 export default CarController;
