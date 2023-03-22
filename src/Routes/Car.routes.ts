@@ -14,6 +14,11 @@ route.get(
   (req: Request, res: Response, next: NextFunction) => baseController.getById(req, res, next),
 );
 
+route.put(
+  '/:id',
+  (req: Request, res: Response, next: NextFunction) => baseController.update(req, res, next),
+);
+
 route.get(
   '/', 
   (req: Request, res: Response, next: NextFunction) => baseController.getAll(req, res, next),
