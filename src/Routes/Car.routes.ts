@@ -9,7 +9,17 @@ const baseController = new CarController(baseService);
 
 const route = Router();
 
-route.use(
+route.get(
+  '/:id', 
+  (req: Request, res: Response, next: NextFunction) => baseController.getById(req, res, next),
+);
+
+route.get(
+  '/', 
+  (req: Request, res: Response, next: NextFunction) => baseController.getAll(req, res, next),
+);
+
+route.post(
   '/', 
   (req: Request, res: Response, next: NextFunction) => baseController.create(req, res, next),
 );
