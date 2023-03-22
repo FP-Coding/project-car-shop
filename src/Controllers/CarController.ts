@@ -10,13 +10,13 @@ class CarController implements ICarController {
     this._service = service;
   }
 
-  async create(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
+  async create(req: Request, res: Response, next: NextFunction): Promise<Response | undefined> {
     try {
       const carInfo = new Car(req.body).returnInfos();
       const createdCar = await this._service.create(carInfo);
       return res.status(201).json(createdCar);
     } catch (error) {
-      return next(error);
+      next(error);
     }
   }
 }
