@@ -33,6 +33,13 @@ class CarService implements ICarService {
     const cars = result.map((car) => new Car(car).returnInfos());
     return cars;
   }
+
+  async update(id: string, obj: ICar): Promise<ICar> {
+    if (!isValidObjectId(id)) throw new InvalidRequest('Invalid mongo id');
+    const result = await this._model.update(id, obj);
+    if (!result) throw new NotFound('Car not found');
+    return new Car(result).returnInfos();
+  }
 }
 
 export default CarService;
