@@ -1,9 +1,9 @@
-import ICar from '../Interfaces/ICar';
+import IMotorcycle from '../Interfaces/IMotorcycle';
 import Vehicle from './Vehicle';
 
-export default class Car extends Vehicle {
-  private _doorsQty: number;
-  private _seatsQty: number;
+export default class Motorcycle extends Vehicle {
+  private _category: string;
+  private _engineCapacity: number;
 
   constructor(
     { 
@@ -11,15 +11,15 @@ export default class Car extends Vehicle {
       year,
       color,
       buyValue,
-      doorsQty,
-      seatsQty,
+      category,
+      engineCapacity,
       status,
       id, 
-    }: ICar,
+    }: IMotorcycle,
   ) {
     super({ model, buyValue, color, year, id, status });
-    this._doorsQty = doorsQty;
-    this._seatsQty = seatsQty;
+    this._category = category;
+    this._engineCapacity = engineCapacity;
   }
 
   public returnInfos() {
@@ -30,8 +30,8 @@ export default class Car extends Vehicle {
       color: this.color,
       status: this.status,
       buyValue: this.buyValue,
-      doorsQty: this._doorsQty,
-      seatsQty: this._seatsQty,
+      category: this._category,
+      engineCapacity: this._engineCapacity,
     };
   }
 }
