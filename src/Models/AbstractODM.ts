@@ -1,4 +1,10 @@
-import { model, Model, models, Schema, UpdateQuery } from 'mongoose';
+import { 
+  model, 
+  Model,
+  models,
+  Schema,
+  UpdateQuery, 
+} from 'mongoose';
 
 abstract class GenericModel<T> {
   protected model: Model<T>;
@@ -25,6 +31,10 @@ abstract class GenericModel<T> {
 
   public async update(id: string, obj: UpdateQuery<T>): Promise<T | null> {
     return this.model.findByIdAndUpdate(id, obj, { new: true });
+  }
+
+  public async delete(id: string): Promise<T | null> {
+    return this.model.findByIdAndDelete(id);
   }
 }
 
