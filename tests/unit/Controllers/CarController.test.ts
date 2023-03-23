@@ -5,7 +5,7 @@ import { Request, Response } from 'express';
 import CarService from '../../../src/Services/CarService';
 import CarController from '../../../src/Controllers/CarController';
 import CarModel from '../../../src/Models/CarODM';
-import { carsArray } from '../../../__tests__/utils/CarsMock';
+import { carsArray } from '../../mocks/cars.mock';
 
 Chai.use(sinonChai);
 
