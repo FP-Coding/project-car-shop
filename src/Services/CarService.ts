@@ -4,7 +4,7 @@ import NotFound from '../Errors/NotFound';
 import InvalidRequest from '../Errors/InvalidRequest';
 import ICar from '../Interfaces/ICar';
 import ICarService from '../Interfaces/ICarService';
-import CarModel from '../Models/CarModel';
+import CarModel from '../Models/CarODM';
 
 class CarService implements ICarService {
   private _model: CarModel;
@@ -21,7 +21,7 @@ class CarService implements ICarService {
   }
 
   async getById(id: string): Promise<ICar> {
-    if (!isValidObjectId(id)) throw new InvalidRequest('Invalid mongo id');
+    if (!isValidObjectId(id)) throw new InvalidRequest();
     const result = await this._model.getById(id);
     if (!result) throw new NotFound('Car not found');
     const foundedCar = new Car(result).returnInfos();
@@ -35,10 +35,15 @@ class CarService implements ICarService {
   }
 
   async update(id: string, obj: ICar): Promise<ICar> {
-    if (!isValidObjectId(id)) throw new InvalidRequest('Invalid mongo id');
+    if (!isValidObjectId(id)) throw new InvalidRequest();
     const result = await this._model.update(id, obj);
     if (!result) throw new NotFound('Car not found');
     return new Car(result).returnInfos();
+  }
+
+  async delete(id: string): Promise<void> { 
+    if (!isValidObjectId(id)) throw new InvalidRequest();
+    await this._model.delete(id);
   }
 }
 
