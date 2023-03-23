@@ -50,6 +50,16 @@ class CarController implements ICarController {
       next(error);
     }
   }
+
+  async delete(req: Request, res: Response, next: NextFunction): Promise<void | undefined> {
+    try {
+      const { id } = req.params;
+      await this._service.delete(id);
+      return res.status(204).end();
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 export default CarController;
