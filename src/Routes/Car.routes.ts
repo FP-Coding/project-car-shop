@@ -1,6 +1,6 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import CarController from '../Controllers/CarController';
-import CarModel from '../Models/CarModel';
+import CarModel from '../Models/CarODM';
 import CarService from '../Services/CarService';
 
 const baseModel = new CarModel();
@@ -17,6 +17,11 @@ route.get(
 route.put(
   '/:id',
   (req: Request, res: Response, next: NextFunction) => baseController.update(req, res, next),
+);
+
+route.delete(
+  '/:id',
+  (req: Request, res: Response, next: NextFunction) => baseController.delete(req, res, next),
 );
 
 route.get(
