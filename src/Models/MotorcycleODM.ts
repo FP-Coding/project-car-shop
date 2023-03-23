@@ -2,7 +2,7 @@ import { Schema } from 'mongoose';
 import IMotorcycle from '../Interfaces/IMotorcycle';
 import GenericModel from './AbstractODM';
 
-class CarModel extends GenericModel<IMotorcycle> {
+class MotorcycleModel extends GenericModel<IMotorcycle> {
   constructor() {
     const schema = new Schema<IMotorcycle>({
       model: { type: String, required: true },
@@ -17,4 +17,4 @@ class CarModel extends GenericModel<IMotorcycle> {
   }
 }
 
-export default CarModel;
+export default MotorcycleModel;
